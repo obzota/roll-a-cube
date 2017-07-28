@@ -24,19 +24,17 @@ public class PlayerController : MonoBehaviour {
 		_horizontalMovement = Input.GetAxis ("Horizontal") * _gain;
 		_verticalMovement = Input.GetAxis ("Vertical") * _gain;
 
-		_anim.ResetTrigger (_hashLeft);
-		_anim.ResetTrigger (_hashRight);
-		_anim.ResetTrigger (_hashUp);
-		_anim.ResetTrigger (_hashDown);
 
-		if (_horizontalMovement < -0.1f) {
-			_anim.SetTrigger (_hashLeft);
-		} else if (_horizontalMovement > 0.1f) {
-			_anim.SetTrigger (_hashRight);
-		} else if (_verticalMovement > 0.1f) {
-			_anim.SetTrigger (_hashUp);
-		} else if (_verticalMovement < -0.1f) {
-			_anim.SetTrigger (_hashDown);
+		if (_anim.GetCurrentAnimatorStateInfo (1).IsTag ("idle")) {
+			if (_horizontalMovement < -0.1f) {
+				_anim.SetTrigger (_hashLeft);
+			} else if (_horizontalMovement > 0.1f) {
+				_anim.SetTrigger (_hashRight);
+			} else if (_verticalMovement > 0.1f) {
+				_anim.SetTrigger (_hashUp);
+			} else if (_verticalMovement < -0.1f) {
+				_anim.SetTrigger (_hashDown);
+			}
 		}
 	}
 
